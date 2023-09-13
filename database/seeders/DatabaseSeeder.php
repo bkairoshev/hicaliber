@@ -2,21 +2,22 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Apartment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $csvFilePath = database_path('seeders/property-data.csv');
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $csv = array_map('str_getcsv', file($csvFilePath));
+        $headers = array_shift($csv);
+
+        foreach ($csv as $row) {
+            $data = array_combine($headers, $row);
+
+            Apartment::create($data);
+        }
     }
 }
