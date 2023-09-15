@@ -1,10 +1,10 @@
 <script setup>
 defineProps([
-    "items"
+    "items", "loading"
 ])
 </script>
 <template>
-    <el-table :data="items" style="width: 100%">
+    <el-table :data="items" style="width: 100%" v-loading="loading">
         <el-table-column prop="name" label="Name" />
         <el-table-column prop="price" label="Price" />
         <el-table-column prop="bedrooms" label="Bedrooms" />
