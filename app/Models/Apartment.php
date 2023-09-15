@@ -30,10 +30,10 @@ class Apartment extends Model
                 $query->where('garages', $filters['garages']);
             })
             ->when(isset($filters['price_min']), function ($query) use ($filters) {
-                $query->where('price', '>=', $filters['min_price']);
+                $query->where('price', '>=', $filters['price_min']);
             })
             ->when(isset($filters['price_max']), function ($query) use ($filters) {
-                $query->where('price', '<=', $filters['max_price']);
+                $query->where('price', '<=', $filters['price_max']);
             });
     }
 }

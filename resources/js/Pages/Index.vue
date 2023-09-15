@@ -1,5 +1,13 @@
 <script setup>
+import { useApartment } from "../Composables/useApartment.js"
+import ApartmentsFilter from "../Components/ApartmentsFilter.vue"
+import ApartmentsTable from "../Components/ApartmentsTable.vue"
+
+const { apartments, filter } = useApartment()
+
 </script>
 <template>
-    <el-button>I am ElButton</el-button>
+    <ApartmentsFilter @submit="filter" />
+    <ApartmentsTable :items="apartments" />
 </template>
+
